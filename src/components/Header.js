@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/Header.css';
+import styles from '../styles/Header.module.css';
 
 function Header(){
     return(
-        <div>
-            <h1>This section is header</h1>
+        <div className={styles.headerDiv}>
+            <h1 className={styles.headerH1}>This section is header</h1>
         </div>
     );
 }

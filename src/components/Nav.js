@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/Nav.css';
+import styles from '../styles/Nav.module.css';
 
 function Nav(){
     return(
-        <div>
-            <h1>This section is navbar</h1>
+        <div className={styles.navDiv}>
+            <h1 className={styles.navH1}>This section is navbar</h1>
         </div>
     );
 }

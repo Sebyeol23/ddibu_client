@@ -5,4 +5,20 @@
 
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: aquamarine;
+}
+
+.Header {
+  flex: 1 0 auto;
+}
+
+.Nav {
+  flex: 2 0 auto;
+}
+
+.Main {
+  flex: 1 0 auto;
 }

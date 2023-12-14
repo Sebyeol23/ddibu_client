@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/Main.css';
+import styles from '../styles/Main.module.css';
 
 function Main(){
     return(
-        <div>
-            <h1>This section is main</h1>
+        <div className={styles.mainDiv}>
+            <h1 className={styles.mainH1}>This section is main</h1>
         </div>
     );
 }
