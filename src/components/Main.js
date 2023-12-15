@@ -16,15 +16,15 @@ import styles from '../styles/Main.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Main(){
-  const [items, setItems] = useState(Array.from({ length: 15 }, (_, index) => `Item ${index + 1}`));
+  const [items, setItems] = useState(Array.from({ length: 16 }, (_, index) => `Item ${index + 1}`));
   const [hasMore, setHasMore] = useState(true);
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      const newItems = Array.from({ length: 5 }, (_, index) => `Item ${items.length + index + 1}`);
+      const newItems = Array.from({ length: 16 }, (_, index) => `Item ${items.length + index + 1}`);
       setItems([...items, ...newItems]);
 
-      if (items.length >= 50) {
+      if (items.length >= 60) {
         setHasMore(false);
       }
     }, 1500);
@@ -33,14 +33,15 @@ function Main(){
   return (
     <div className={styles.mainDiv}>
       <InfiniteScroll
+        className={styles.scroll}
         dataLength={items.length}
         next={fetchMoreData}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={<p>No more items</p>}
+        loader={<div className={styles.load}>Loading...</div>}
+        endMessage={<div className={styles.end}>No more items</div>}
       >
         {items.map((item, index) => (
-          <div key={index} style={{ border: '1px solid #ddd', padding: '20px', marginBottom: '10px' }}>
+          <div className={styles.item}>
             {item}
           </div>
         ))}
