@@ -1,8 +1,19 @@
 .headerDiv {
     background-color : pink;
     height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-.headerH1 {
+.searchBox {
+    background-color: aquamarine;
     color: white;
+    flex: 19;
+}
+
+.loginBox {
+    background-color: antiquewhite;
+    color: grey;
+    flex: 1;
 }

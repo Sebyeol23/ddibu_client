@@ -4,7 +4,8 @@ import styles from '../styles/Header.module.css';
 function Header(){
     return(
         <div className={styles.headerDiv}>
-            <h1 className={styles.headerH1}>This section is header</h1>
+            <div className={styles.searchBox}>This section is searchBox</div>
+            <div className={styles.loginBox}>This section is loginBox</div>
         </div>
     );
 }
