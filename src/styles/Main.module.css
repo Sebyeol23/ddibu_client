@@ -3,6 +3,25 @@
     height: 100%;
 }
 
-.mainH1 {
-    color: black;
+.scroll {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.item {
+    height: 25vh;
+    border: solid;
+    border-color: black;
+}
+
+.load {
+    width: 400%;
+    background-color: antiquewhite;
+    text-align: center;
+}
+
+.end {
+    width: 400%;
+    background-color: aquamarine;
+    text-align: center;
 }
