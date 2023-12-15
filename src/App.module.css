@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.Header {
+  flex: 3;
+}
+
+.Nav {
+  flex: 2;
+}
+
+.Main {
+  flex: 45;
+}

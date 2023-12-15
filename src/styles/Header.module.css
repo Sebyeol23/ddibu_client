@@ -1,0 +1,43 @@
+.headerDiv {
+    background-color : pink;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.searchBox {
+    background-color: aquamarine;
+    color: white;
+    flex: 19;
+    display: flex;
+    flex-direction: row;
+}
+
+.search {
+    background-color: magenta;
+    flex: 10;
+}
+
+.sort {
+    background-color: blue;
+    flex: 1;
+}
+
+.categorize {
+    background-color: yellow;
+    flex: 1;
+}
+
+.air {
+    background-color: aqua;
+    flex: 6;
+}
+
+.loginBox {
+    background-color: antiquewhite;
+    color: grey;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
