@@ -1,14 +1,24 @@
 import React, {useRef} from 'react';
 import styles from '../styles/SignUp.module.css';
+import axios from 'axios';
 
 function SignUp(){
     const id = useRef();
     const pw = useRef();
 
-    function PostSignUp(){
+    async function PostSignUp(){
         if(!id.current.value) console.log("input id");
         else if(!pw.current.value) console.log("input pw");
-        else console.log("good");
+        else{
+            try{
+                await axios.post('ec2-52-78-136-120.ap-northeast-2.compute.amazonaws.com', {
+                    id: id.current.value,
+                    pw: pw.current.value
+                });
+            } catch(e){
+                console.error(e);
+            }
+        }
     }
     return(
         <div className={styles.page}>
