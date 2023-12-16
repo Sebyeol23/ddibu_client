@@ -16,12 +16,12 @@ import styles from '../styles/Main.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 function Main(){
-  const [items, setItems] = useState(Array.from({ length: 16 }, (_, index) => `Item ${index + 1}`));
+  const [items, setItems] = useState(Array.from({ length: 15 }, (_, index) => `Item ${index + 1}`));
   const [hasMore, setHasMore] = useState(true);
 
   const fetchMoreData = () => {
     setTimeout(() => {
-      const newItems = Array.from({ length: 16 }, (_, index) => `Item ${items.length + index + 1}`);
+      const newItems = Array.from({ length: 15 }, (_, index) => `Item ${items.length + index + 1}`);
       setItems([...items, ...newItems]);
 
       if (items.length >= 60) {
@@ -43,8 +43,10 @@ function Main(){
         {items.map((item, index) => (
           <div className={styles.item}>
             <div className={styles.image} />
-            <div className={styles.name}>
-              시나모롤
+            <div className={styles.data}>
+              <div className={styles.name}>시나모롤</div>
+              <div className={styles.location}>서울</div>
+              <div className={styles.price}>2000</div>
             </div>
           </div>
         ))}

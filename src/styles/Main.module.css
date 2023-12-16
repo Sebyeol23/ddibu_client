@@ -5,11 +5,11 @@
 
 .scroll {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
 
 .item {
-    height: 25vh;
+    height: 35vh;
     border: solid;
     border-color: black;
     display: flex;
@@ -19,7 +19,7 @@
 
 .image {
     background-color: bisque;
-    flex: 20;
+    flex: 28;
     width: 90%;
     display: flex;
     justify-content: center;
@@ -30,22 +30,24 @@
     background-position: center;
 }
 
-.name {
+.data {
     background-color: aquamarine;
-    flex: 1;
+    flex: 7;
+    width: 90%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
 .load {
-    width: 400%;
+    width: 500%;
     background-color: antiquewhite;
     text-align: center;
 }
 
 .end {
-    width: 400%;
+    width: 500%;
     background-color: aquamarine;
     text-align: center;
 }
