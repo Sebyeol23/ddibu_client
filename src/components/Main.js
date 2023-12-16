@@ -41,7 +41,7 @@ function Main(){
         endMessage={<div className={styles.end}>No more items</div>}
       >
         {items.map((item, index) => (
-          <div className={styles.item}>
+          <div className={styles.item} key={index}>
             <div className={styles.image} />
             <div className={styles.data}>
               <div className={styles.name}>시나모롤</div>

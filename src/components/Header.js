@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/Header.module.css';
+import {Link} from 'react-router-dom';
 
 function Header(){
     return(
@@ -11,8 +12,8 @@ function Header(){
                 <div className={styles.air}>여백</div>
             </div>
             <div className={styles.loginBox}>
-                <div className={styles.signUp}>회원가입</div>
-                <div className={styles.signIn}>로그인</div>
+                <Link className={styles.signUp} to={'/signup'}>회원가입</Link>
+                <Link className={styles.signIn} to={'/signin'}>로그인</Link>
             </div>
         </div>
     );
