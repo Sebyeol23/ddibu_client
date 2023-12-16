@@ -42,7 +42,10 @@ function Main(){
       >
         {items.map((item, index) => (
           <div className={styles.item}>
-            {item}
+            <div className={styles.image} />
+            <div className={styles.name}>
+              시나모롤
+            </div>
           </div>
         ))}
       </InfiniteScroll>
