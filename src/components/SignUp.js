@@ -11,7 +11,7 @@ function SignUp(){
         else if(!pw.current.value) console.log("input pw");
         else{
             try{
-                await axios.post('ec2-52-78-136-120.ap-northeast-2.compute.amazonaws.com/api/account/sign-up', {
+                await axios.post('ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/account/sign-up', {
                     id: id.current.value,
                     pw: pw.current.value
                 });
