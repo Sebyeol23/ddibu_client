@@ -7,12 +7,11 @@ import HeaderLoggedOut from './HomeLoggedOut';
 function Header(){
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [userName, setUserName] = useState("유저");
-    const token = localStorage.getItem("token");
 
     async function auth(){
         await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/user', {
             headers: {
-                Authorization: token
+                Authorization: localStorage.getItem("token")
             }
         }).then((res)=>{
             setUserName(res.data.userId);
