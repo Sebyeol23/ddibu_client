@@ -3,8 +3,30 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Product from './components/Product';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import io from 'socket.io-client';
 
 function App() {
+  useEffect(() => {
+    const socket = io('http://localhost:80', {
+      cors: {
+        origin: ['http://localhost:80']
+      }
+    });
+
+    socket.on('connect', () => {
+      console.log('Connected to server');
+      socket.emit('clientMessage', 'Hello Server!');
+    });
+
+    socket.on('serverMessage', (message) => {
+      console.log('Received message from server:', message);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
