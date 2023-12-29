@@ -1,26 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import getCurrentSQLDateTime from '../utils/datetime';
 
 function Product() {
   const [selectedFile, setSelectedFile] = useState(null);
   const title = useRef();
   const body = useRef();
   const price = useRef();
-
-  function getCurrentSQLDateTime() {
-    const now = new Date();
-  
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-  
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const seconds = now.getSeconds().toString().padStart(2, '0');
-  
-    const sqlDateTime = `${now.getFullYear()}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  
-    return sqlDateTime;
-  }
 
   function handleFileChange(event){
     setSelectedFile(event.target.files[0]);
