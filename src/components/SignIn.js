@@ -1,8 +1,10 @@
 import React, {useRef} from 'react';
 import styles from '../styles/SignUp.module.css';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 function SignIn(){
+    const navigate = useNavigate();
     const id = useRef();
     const pw = useRef();
 
@@ -15,9 +17,10 @@ function SignIn(){
                 pw: pw.current.value
             }).then((res)=>{
                 localStorage.setItem("token", res.data.token);
+                navigate('../');
             }).catch((error)=>{
                 console.log(error);
-            })
+            });
         }
     }
     return(

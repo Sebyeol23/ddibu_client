@@ -1,8 +1,10 @@
 import React, {useRef} from 'react';
 import styles from '../styles/SignUp.module.css';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 function SignUp(){
+    const navigate = useNavigate();
     const id = useRef();
     const pw = useRef();
 
@@ -15,6 +17,7 @@ function SignUp(){
                     id: id.current.value,
                     pw: pw.current.value
                 });
+                navigate('../signin');
             } catch(e){
                 console.error(e);
             }
