@@ -34,7 +34,7 @@ function Header(){
                 <div className={styles.air}>여백</div>
             </div>
             <div className={styles.loginBox}>
-                {isLoggedIn ? <HeaderLoggedIn userName={userName}/> : <HeaderLoggedOut />}
+                {isLoggedIn ? <HeaderLoggedIn userName={userName} setLoggedIn={setLoggedIn}/> : <HeaderLoggedOut />}
             </div>
         </div>
     );
