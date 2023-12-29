@@ -1,34 +1,39 @@
-// import React from 'react';
-// import styles from '../styles/Main.module.css';
-
-// function Main(){
-//     return(
-//         <div className={styles.mainDiv}>
-//             <h1 className={styles.mainH1}>This section is main</h1>
-//         </div>
-//     );
-// }
-
-// export default Main;
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/Main.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from 'axios';
 
 function Main(){
-  const [items, setItems] = useState(Array.from({ length: 15 }, (_, index) => `Item ${index + 1}`));
+  const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchMoreData = () => {
-    setTimeout(() => {
-      const newItems = Array.from({ length: 15 }, (_, index) => `Item ${items.length + index + 1}`);
-      setItems([...items, ...newItems]);
-
-      if (items.length >= 60) {
-        setHasMore(false);
+  async function fetchMoreData(){
+    const newItems = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
+      params:{
+        limit: 15,
+        lastId: items[items.length-1].productId
       }
-    }, 1500);
+    });
+    if(!newItems.data.length) setHasMore(false);
+    else setItems([...items, ...newItems.data]);
   };
+
+  useEffect(() => {
+    async function fetchData(){
+      try {
+        const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
+          params:{
+            limit: 15
+          }
+        });
+        if(res.data.length < 15) setHasMore(false);
+        setItems(res.data);        
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.mainDiv}>
@@ -40,16 +45,15 @@ function Main(){
         loader={<div className={styles.load}>Loading...</div>}
         endMessage={<div className={styles.end}>No more items</div>}
       >
-        {items.map((item, index) => (
-          <div className={styles.item} key={index}>
+        {items.length > 0 ? items.map((item, index) => (
+          <div className={styles.item} key={item.productId}>
             <div className={styles.image} />
             <div className={styles.data}>
-              <div className={styles.name}>시나모롤</div>
-              <div className={styles.location}>서울</div>
-              <div className={styles.price}>2000</div>
+              <div className={styles.name}>{item.title}</div>
+              <div className={styles.price}>{item.price}</div>
             </div>
           </div>
-        ))}
+        )) : null}
       </InfiniteScroll>
     </div>
   );

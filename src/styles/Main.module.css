@@ -41,13 +41,13 @@
 }
 
 .load {
-    width: 500%;
+    grid-column: span 5;
     background-color: antiquewhite;
     text-align: center;
 }
 
 .end {
-    width: 500%;
+    grid-column: span 5;
     background-color: aquamarine;
     text-align: center;
 }
