@@ -27,7 +27,7 @@ function Main(){
           }
         });
         if(res.data.length < 15) setHasMore(false);
-        setItems(res.data);        
+        setItems(res.data);      
       } catch (error) {
         console.log(error);
       }
@@ -47,7 +47,8 @@ function Main(){
       >
         {items.length > 0 ? items.map((item, index) => (
           <div className={styles.item} key={item.productId}>
-            <div className={styles.image} />
+            <div className={styles.image} style={{ backgroundImage: `url(data:image/${item.extension};base64,${item.image})` }}>
+            </div>
             <div className={styles.data}>
               <div className={styles.name}>{item.title}</div>
               <div className={styles.price}>{item.price}</div>
