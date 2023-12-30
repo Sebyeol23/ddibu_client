@@ -10,6 +10,23 @@ function ProductInfo() {
     const queryParams = new URLSearchParams(search);
     const productId = queryParams.get('pid');
 
+    async function postLike(){
+        try{
+            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/like', 
+                {
+                    productId: productId
+                },
+                {
+                    headers: {
+                    'Authorization': localStorage.getItem('token')
+                    }
+                }
+            );
+        }catch(error){
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         async function getProductInfo(){
             try{
@@ -37,6 +54,7 @@ function ProductInfo() {
             <div>판매자: {productInfo.sellerId}</div>
             <div>상태: {productInfo.status ? '판매완료' : '판매중'}</div>
             <div className={styles.image} style={{ backgroundImage: `url(data:image/${productInfo.extension};base64,${productInfo.image})` }}></div>
+            <div className={styles.like} onClick={postLike}>좋아요</div>
         </div>       
     );
 }

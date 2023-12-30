@@ -10,14 +10,14 @@ function Main(){
   const [hasMore, setHasMore] = useState(true);
 
   async function fetchMoreData(){
-    const newItems = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
+    const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
       params:{
         limit: 15,
         lastId: items[items.length-1].productId
       }
     });
-    if(!newItems.data.length) setHasMore(false);
-    else setItems([...items, ...newItems.data]);
+    if(!res.data.length) setHasMore(false);
+    else setItems([...items, ...res.data]);
   };
 
   useEffect(() => {

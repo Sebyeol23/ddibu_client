@@ -8,3 +8,7 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.like {
+    cursor: pointer;
+}
