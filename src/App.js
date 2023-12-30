@@ -5,6 +5,7 @@ import Product from './components/Product';
 import Profile from './components/Profile';
 import ProductInfo from './components/ProductInfo';
 import WishList from './components/WishList';
+import ChatRoom from './components/ChatRoom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import io from 'socket.io-client';
@@ -40,6 +41,7 @@ function App() {
         <Route path='/profile' element={<Profile />}/>
         <Route path='/product-info' element={<ProductInfo />}/>
         <Route path='/like' element={<WishList />}/>
+        <Route path='/chat' element={<ChatRoom />}/>
       </Routes>
     </BrowserRouter>
   );
