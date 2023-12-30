@@ -1,14 +1,38 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from '../styles/ProductInfo.module.css';
 
 function ProductInfo() {
     const { search } = useLocation();
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
     const [productInfo, setProductInfo] = useState();
     const queryParams = new URLSearchParams(search);
     const productId = queryParams.get('pid');
+
+    async function navigateToChatRoom(){
+        try{
+            const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/chat-room',
+                {
+                    headers: {
+                        'Authorization': localStorage.getItem('token')
+                    },
+                    params: {
+                        productId: productId
+                    }
+                }
+            );
+            if(res.data.roomId){
+                console.log(res.data);
+            }
+            else{
+                navigate('../temp-chat', {state: {sellerId: productInfo.sellerId}});
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
     async function postLike(){
         try{
@@ -55,6 +79,7 @@ function ProductInfo() {
             <div>상태: {productInfo.status ? '판매완료' : '판매중'}</div>
             <div className={styles.image} style={{ backgroundImage: `url(data:image/${productInfo.extension};base64,${productInfo.image})` }}></div>
             <div className={styles.like} onClick={postLike}>좋아요</div>
+            <div className={styles.like} onClick={navigateToChatRoom}>채팅</div>
         </div>       
     );
 }
