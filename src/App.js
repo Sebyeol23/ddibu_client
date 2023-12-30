@@ -2,6 +2,7 @@ import Home from './components/Home';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Product from './components/Product';
+import Profile from './components/Profile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import io from 'socket.io-client';
@@ -34,6 +35,7 @@ function App() {
         <Route path='/signup' element={<SignUp />}/>
         <Route path='/signin' element={<SignIn />}/>
         <Route path='/product' element={<Product />}/>
+        <Route path='/profile' element={<Profile />}/>
       </Routes>
     </BrowserRouter>
   );
