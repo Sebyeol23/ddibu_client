@@ -4,6 +4,7 @@ import SignIn from './components/SignIn';
 import Product from './components/Product';
 import Profile from './components/Profile';
 import ProductInfo from './components/ProductInfo';
+import WishList from './components/WishList';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import io from 'socket.io-client';
@@ -38,6 +39,7 @@ function App() {
         <Route path='/product' element={<Product />}/>
         <Route path='/profile' element={<Profile />}/>
         <Route path='/product-info' element={<ProductInfo />}/>
+        <Route path='/like' element={<WishList />}/>
       </Routes>
     </BrowserRouter>
   );
