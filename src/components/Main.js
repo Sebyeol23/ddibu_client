@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/Main.module.css';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 function Main(){
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
@@ -46,7 +48,7 @@ function Main(){
         endMessage={<div className={styles.end}>No more items</div>}
       >
         {items.length > 0 ? items.map((item, index) => (
-          <div className={styles.item} key={item.productId}>
+          <div className={styles.item} key={item.productId} onClick={()=>navigate(`/product-info?pid=${item.productId}`)}>
             <div className={styles.image} style={{ backgroundImage: `url(data:image/${item.extension};base64,${item.image})` }}>
             </div>
             <div className={styles.data}>

@@ -1,0 +1,10 @@
+.image {
+    background-color: bisque;
+    width: 20vw;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

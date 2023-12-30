@@ -3,6 +3,7 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Product from './components/Product';
 import Profile from './components/Profile';
+import ProductInfo from './components/ProductInfo';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
 import io from 'socket.io-client';
@@ -36,6 +37,7 @@ function App() {
         <Route path='/signin' element={<SignIn />}/>
         <Route path='/product' element={<Product />}/>
         <Route path='/profile' element={<Profile />}/>
+        <Route path='/product-info' element={<ProductInfo />}/>
       </Routes>
     </BrowserRouter>
   );
