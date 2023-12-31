@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import styles from '../styles/Chat.module.css';
 import axios from 'axios';
+import getCurrentSQLDateTime from '../utils/datetime';
 
 function TempChat({socket}){
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ function TempChat({socket}){
             await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/chat-room', 
                 {
                     productId: productId,
-                    date: "2023-12-31 00:00:00",
+                    date: getCurrentSQLDateTime(),
                     message: msg
                 },
                 {
