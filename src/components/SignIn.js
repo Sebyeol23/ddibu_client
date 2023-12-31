@@ -17,7 +17,7 @@ function SignIn(){
                 pw: pw.current.value
             }).then((res)=>{
                 localStorage.setItem("token", res.data.token);
-                navigate('../');
+                navigate('../', {replace: true});
             }).catch((error)=>{
                 console.log(error);
             });

@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import io from 'socket.io-client';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
@@ -7,31 +10,25 @@ import ProductInfo from './components/ProductInfo';
 import WishList from './components/WishList';
 import ChatRoom from './components/ChatRoom';
 import TempChat from './components/TempChat';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect } from 'react';
-import io from 'socket.io-client';
+import Chat from './components/Chat';
 
 function App() {
+  const [socket, setSocket] = useState(null);
+
   useEffect(() => {
-    const socket = io('http://localhost:80', {
+    const newSocket = io('http://localhost:80', {
       cors: {
-        origin: ['http://localhost:80']
-      }
+        origin: ['http://localhost:80'],
+      },
     });
 
-    socket.on('connect', () => {
-      console.log('Connected to server');
-      socket.emit('clientMessage', 'Hello Server!');
-    });
-
-    socket.on('serverMessage', (message) => {
-      console.log('Received message from server:', message);
-    });
+    setSocket(newSocket);
 
     return () => {
-      socket.disconnect();
+      newSocket.disconnect();
     };
   }, []);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -43,7 +40,8 @@ function App() {
         <Route path='/product-info' element={<ProductInfo />}/>
         <Route path='/like' element={<WishList />}/>
         <Route path='/chat-room' element={<ChatRoom />}/>
-        <Route path='/temp-chat' element={<TempChat />}/>
+        <Route path='/temp-chat' element={<TempChat socket={socket}/>}/>
+        <Route path='/chat' element={<Chat socket={socket}/>}/>
       </Routes>
     </BrowserRouter>
   );

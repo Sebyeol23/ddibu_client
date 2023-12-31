@@ -24,10 +24,10 @@ function ProductInfo() {
                 }
             );
             if(res.data.roomId){
-                console.log(res.data);
+                navigate('../chat', {state: {roomId: res.data.roomId, partnerId: productInfo.sellerId}});
             }
             else{
-                navigate('../temp-chat', {state: {sellerId: productInfo.sellerId}});
+                navigate('../temp-chat', {state: {productId: productId, sellerId: productInfo.sellerId}});
             }
         }catch(error){
             console.log(error);
