@@ -36,12 +36,16 @@ function Chat(){
             }
         }
         getMessage();
-    }, []);
+    }, [roomId]);
 
     return (
         <div className={styles.app}>
             <div className={styles.header}>{partnerId}</div>
-            <div className={styles.window}>{isLoading ? null : chats[0].message}</div>
+            <div className={styles.window}>
+                {isLoading ? null : chats.map((chat, index) => (
+                    <div key={chat.id} className={chat.isSender ? styles.myChat : styles.partnerChat}>{chat.message}</div>
+                ))}
+            </div>
             <div className={styles.input}>
                 <input
                     className={styles.inputMessage}

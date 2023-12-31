@@ -1,8 +1,10 @@
 import styles from '../styles/ChatRoom.module.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function ChatRoom(){
+    const navigate = useNavigate();
     const [chatRooms, setChatRooms] = useState([]);
 
     useEffect(() => {
@@ -13,7 +15,7 @@ function ChatRoom(){
                         Authorization: localStorage.getItem("token")
                     }
                 });
-                setChatRooms(res.data);      
+                setChatRooms(res.data);    
             } catch (error) {
                 console.log(error);
             }
@@ -25,7 +27,7 @@ function ChatRoom(){
         <div className={styles.chatRoomBox}>
             {chatRooms.length ? 
             chatRooms.map((chatRoom, index) => (
-                <div className={styles.chatRoom} key={chatRoom.roomId}>{chatRoom.partnerId}</div>
+                <div className={styles.chatRoom} key={chatRoom.roomId} onClick={()=>{navigate('../chat', {state: {roomId: chatRoom.roomId, partnerId: chatRoom.partnerId}});}}>{`${chatRoom.roomId} -> ${chatRoom.partnerId}`}</div>
             ))
             :null}
         </div>
