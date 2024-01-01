@@ -7,6 +7,7 @@ function Product() {
   const title = useRef();
   const body = useRef();
   const price = useRef();
+  const tag = useRef();
 
   function handleFileChange(event){
     setSelectedFile(event.target.files[0]);
@@ -19,6 +20,7 @@ function Product() {
       formData.append('title', title.current.value);
       formData.append('body', body.current.value);
       formData.append('price', price.current.value);
+      formData.append('tag', tag.current.value ? JSON.stringify([tag.current.value]) : null);
       formData.append('date', getCurrentSQLDateTime());
 
       const response = await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/product/register', formData, {
@@ -40,6 +42,7 @@ function Product() {
       <input type='text' ref={title}></input>
       <input type='text' ref={body}></input>
       <input type='text' ref={price}></input>
+      <input type='text' ref={tag}></input>
       <button onClick={handleUpload}>상품 등록</button>
     </div>
   );
