@@ -17,9 +17,9 @@ function App() {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:80', {
+    const newSocket = io('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com', {
       cors: {
-        origin: ['http://localhost:80'],
+        origin: ['http://localhost:80', 'http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com'],
       },
     });
 
