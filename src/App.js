@@ -11,6 +11,7 @@ import WishList from './components/WishList';
 import ChatRoom from './components/ChatRoom';
 import TempChat from './components/TempChat';
 import Chat from './components/Chat';
+import axios from 'axios';
 
 function App() {
   const [socket, setSocket] = useState(null);
@@ -23,6 +24,26 @@ function App() {
     });
 
     setSocket(newSocket);
+
+    async function storeSocket(socketId){
+      try{
+        await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/socket/socket', {
+          socketId: socketId
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("token")
+          }
+        });
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
+
+    newSocket.on('connect', ()=>{
+      storeSocket(newSocket.id);
+    })
 
     return () => {
       newSocket.disconnect();
