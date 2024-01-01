@@ -14,7 +14,6 @@ function TempChat({socket}){
     async function handleSendMessage(){
         const msg = message.current.value;
         message.current.value = null;
-        console.log(msg);
 
         try{
             await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/chat-room', 
@@ -49,7 +48,7 @@ function TempChat({socket}){
         }
     }, [socket, navigate, sellerId]);
 
-    if(!socket) return (<div>Loading...</div>)
+    if(!socket) return (<div>Loading...</div>);
     return (
         <div className={styles.app}>
             <div className={styles.header}>{sellerId}</div>

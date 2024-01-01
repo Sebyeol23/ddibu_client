@@ -77,9 +77,10 @@ function ProductInfo() {
             <div>등록일: {productInfo.date}</div>
             <div>판매자: {productInfo.sellerId}</div>
             <div>상태: {productInfo.status ? '판매완료' : '판매중'}</div>
+            <div>태그: {productInfo.tag}</div>
             <div className={styles.image} style={{ backgroundImage: `url(data:image/${productInfo.extension};base64,${productInfo.image})` }}></div>
-            <div className={styles.like} onClick={postLike}>좋아요</div>
-            <div className={styles.like} onClick={navigateToChatRoom}>채팅</div>
+            <button className={styles.like} onClick={postLike}>좋아요</button>
+            <button className={styles.like} onClick={navigateToChatRoom}>채팅</button>
         </div>       
     );
 }

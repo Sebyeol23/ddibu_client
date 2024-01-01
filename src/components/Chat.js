@@ -1,20 +1,38 @@
 import { useLocation } from 'react-router-dom';
 import styles from '../styles/Chat.module.css';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import axios from 'axios';
+import getCurrentSQLDateTime from '../utils/datetime';
 
-function Chat(){
+function Chat({socket}){
     const location = useLocation();
     const roomId = location.state && location.state.roomId;
     const partnerId = location.state && location.state.partnerId;
     const [chats, setChats] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const message = useRef();
 
-    const handleSendMessage = () => {
-        // if (newMessage.trim() === '') return;
+    async function handleSendMessage(){
+        const msg = message.current.value;
+        message.current.value = null;
 
-        // setMessages([...messages, { text: newMessage, sender: 'user' }]);
-        // setNewMessage('');
+        try{
+            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/chat/chat', 
+                {
+                    roomId: roomId,
+                    date: getCurrentSQLDateTime(),
+                    message: msg
+                },
+                {
+                    headers: {
+                    'Authorization': localStorage.getItem('token')
+                    }
+                }
+            );
+        }
+        catch(error){
+            console.log(error);
+        }
     }
 
     useEffect(()=>{
@@ -36,8 +54,18 @@ function Chat(){
             }
         }
         getMessage();
-    }, [roomId]);
 
+        if(!socket) return;
+        socket.on('newChat', ()=>{
+            getMessage();
+        });
+
+        return ()=>{
+            socket.off('newChat');
+        }
+    }, [socket, roomId]);
+
+    if(!socket) return (<div>Loading...</div>);
     return (
         <div className={styles.app}>
             <div className={styles.header}>{partnerId}</div>
@@ -51,6 +79,7 @@ function Chat(){
                     className={styles.inputMessage}
                     type="text"
                     placeholder="Type your message..."
+                    ref={message}
                 />
                 <button className={styles.button} onClick={handleSendMessage}>Send</button>
             </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function ChatRoom(){
+function ChatRoom({socket}){
     const navigate = useNavigate();
     const [chatRooms, setChatRooms] = useState([]);
 
@@ -21,7 +21,15 @@ function ChatRoom(){
             }
         };
         getChatRoom();
-    }, []);
+        if(!socket) return;
+        socket.on('newChatRoom', ()=>{
+            getChatRoom();
+        });
+
+        return ()=>{
+            socket.off('newChatRoom');
+        }
+    }, [socket]);
 
     return (
         <div className={styles.chatRoomBox}>
