@@ -60,7 +60,7 @@ function App() {
         <Route path='/profile' element={<Profile />}/>
         <Route path='/product-info' element={<ProductInfo />}/>
         <Route path='/like' element={<WishList />}/>
-        <Route path='/chat-room' element={<ChatRoom />}/>
+        <Route path='/chat-room' element={<ChatRoom socket={socket}/>}/>
         <Route path='/temp-chat' element={<TempChat socket={socket}/>}/>
         <Route path='/chat' element={<Chat socket={socket}/>}/>
       </Routes>
