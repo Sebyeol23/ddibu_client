@@ -5,25 +5,25 @@ import HeaderLoggedIn from './HomeLoggedIn';
 import HeaderLoggedOut from './HomeLoggedOut';
 
 function Header(){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [userName, setUserName] = useState("유저");
 
-    async function auth(){
-        await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/user', {
-            headers: {
-                Authorization: localStorage.getItem("token")
-            }
-        }).then((res)=>{
-            setUserName(res.data.userId);
-            setLoggedIn(true);
-        }).catch((error)=>{
-            console.log(error);
-        })
-    }
-
     useEffect(()=>{
+        async function auth(){
+            await axios.get(`${apiUrl}/api/home/user`, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            }).then((res)=>{
+                setUserName(res.data.userId);
+                setLoggedIn(true);
+            }).catch((error)=>{
+                console.log(error);
+            })
+        }
         auth();
-    }, []);
+    }, [apiUrl]);
 
     return(
         <div className={styles.headerDiv}>

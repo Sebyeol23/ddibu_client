@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from '../styles/ProductInfo.module.css';
 
 function ProductInfo() {
+    const apiUrl = process.env.REACT_APP_API_URL;
     const { search } = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +14,7 @@ function ProductInfo() {
 
     async function navigateToChatRoom(){
         try{
-            const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/chat-room',
+            const res = await axios.get(`${apiUrl}/api/home/chat-room`,
                 {
                     headers: {
                         'Authorization': localStorage.getItem('token')
@@ -36,7 +37,7 @@ function ProductInfo() {
 
     async function postLike(){
         try{
-            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/like', 
+            await axios.post(`${apiUrl}/api/home/like`, 
                 {
                     productId: productId
                 },
@@ -54,7 +55,7 @@ function ProductInfo() {
     useEffect(() => {
         async function getProductInfo(){
             try{
-                const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product-info', {
+                const res = await axios.get(`${apiUrl}/api/home/product-info`, {
                     params:{
                         productId: productId
                     }
@@ -66,7 +67,7 @@ function ProductInfo() {
             }
         }
         getProductInfo();
-    }, [productId]);
+    }, [productId, apiUrl]);
 
     if(isLoading) return(<div>Loading...</div>);
     return(

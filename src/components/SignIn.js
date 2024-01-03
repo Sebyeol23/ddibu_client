@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 function SignIn(){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const id = useRef();
     const pw = useRef();
@@ -12,7 +13,7 @@ function SignIn(){
         if(!id.current.value) console.log("input id");
         else if(!pw.current.value) console.log("input pw");
         else{
-            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/account/sign-in', {
+            await axios.post(`${apiUrl}/api/account/sign-in`, {
                 id: id.current.value,
                 pw: pw.current.value
             }).then((res)=>{

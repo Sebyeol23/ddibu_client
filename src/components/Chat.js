@@ -5,6 +5,7 @@ import axios from 'axios';
 import getCurrentSQLDateTime from '../utils/datetime';
 
 function Chat({socket}){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const location = useLocation();
     const roomId = location.state && location.state.roomId;
     const partnerId = location.state && location.state.partnerId;
@@ -17,7 +18,7 @@ function Chat({socket}){
         message.current.value = null;
 
         try{
-            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/chat/chat', 
+            await axios.post(`${apiUrl}/api/chat/chat`, 
                 {
                     roomId: roomId,
                     date: getCurrentSQLDateTime(),
@@ -25,7 +26,7 @@ function Chat({socket}){
                 },
                 {
                     headers: {
-                    'Authorization': localStorage.getItem('token')
+                        'Authorization': localStorage.getItem('token')
                     }
                 }
             );
@@ -38,7 +39,7 @@ function Chat({socket}){
     useEffect(()=>{
         async function getMessage(){
             try{
-                const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/chat/chat', {
+                const res = await axios.get(`${apiUrl}/api/chat/chat`, {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     },
@@ -63,7 +64,7 @@ function Chat({socket}){
         return ()=>{
             socket.off('newChat');
         }
-    }, [socket, roomId]);
+    }, [socket, roomId, apiUrl]);
 
     if(!socket) return (<div>Loading...</div>);
     return (

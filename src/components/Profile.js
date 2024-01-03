@@ -3,6 +3,7 @@ import styles from '../styles/SignUp.module.css';
 import axios from 'axios';
 
 function Profile(){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const name = useRef();
     const location = useRef();
     const [originalName, setOriginalName] = useState();
@@ -11,7 +12,7 @@ function Profile(){
     useEffect(() => {
         async function getProfile(){
             try {
-                const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/profile/user', {
+                const res = await axios.get(`${apiUrl}/api/profile/user`, {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }
@@ -23,13 +24,13 @@ function Profile(){
             }
         };
         getProfile();
-    }, []);
+    }, [apiUrl]);
 
     async function UpdateProfile(){
         if(!name.current.value) console.log("input new name");
         else{
             try{
-                await axios.put('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/profile/user',
+                await axios.put(`${apiUrl}/api/profile/user`,
                 {
                     newName: name.current.value,
                     newLocation: location.current.value === '' ? null : location.current.value

@@ -5,12 +5,13 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 function WishList(){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const [items, setItems] = useState([]);
     const [hasMore, setHasMore] = useState(true);
 
     async function fetchMoreData(){
-        const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/like/like', {
+        const res = await axios.get(`${apiUrl}/api/like/like`, {
             headers: {
                 Authorization: localStorage.getItem("token")
             },
@@ -26,7 +27,7 @@ function WishList(){
     useEffect(() => {
         async function fetchData(){
         try {
-            const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/like/like', {
+            const res = await axios.get(`${apiUrl}/api/like/like`, {
                 headers: {
                     Authorization: localStorage.getItem("token")
                 },
@@ -41,7 +42,7 @@ function WishList(){
         }
         };
         fetchData();
-    }, []);
+    }, [apiUrl]);
 
     return (
         <div className={styles.mainDiv}>
