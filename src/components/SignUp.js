@@ -4,6 +4,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 function SignUp(){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const id = useRef();
     const pw = useRef();
@@ -13,7 +14,7 @@ function SignUp(){
         else if(!pw.current.value) console.log("input pw");
         else{
             try{
-                await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/account/sign-up', {
+                await axios.post(`${apiUrl}/api/account/sign-up`, {
                     id: id.current.value,
                     pw: pw.current.value
                 });

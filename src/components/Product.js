@@ -3,6 +3,7 @@ import axios from 'axios';
 import getCurrentSQLDateTime from '../utils/datetime';
 
 function Product() {
+  const apiUrl = process.env.REACT_APP_API_URL;
   const [selectedFile, setSelectedFile] = useState(null);
   const title = useRef();
   const body = useRef();
@@ -23,7 +24,7 @@ function Product() {
       formData.append('tag', tag.current.value ? JSON.stringify([tag.current.value]) : null);
       formData.append('date', getCurrentSQLDateTime());
 
-      const response = await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/product/register', formData, {
+      const response = await axios.post(`${apiUrl}/api/product/register`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': localStorage.getItem('token')

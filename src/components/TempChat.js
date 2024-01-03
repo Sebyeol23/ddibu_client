@@ -5,6 +5,7 @@ import axios from 'axios';
 import getCurrentSQLDateTime from '../utils/datetime';
 
 function TempChat({socket}){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const location = useLocation();
     const productId = location.state && location.state.productId;
@@ -16,7 +17,7 @@ function TempChat({socket}){
         message.current.value = null;
 
         try{
-            await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/chat-room', 
+            await axios.post(`${apiUrl}/api/home/chat-room`, 
                 {
                     productId: productId,
                     date: getCurrentSQLDateTime(),
@@ -46,7 +47,7 @@ function TempChat({socket}){
         return ()=>{
             socket.off('newChatRoom');
         }
-    }, [socket, navigate, sellerId]);
+    }, [socket, navigate, sellerId, apiUrl]);
 
     if(!socket) return (<div>Loading...</div>);
     return (

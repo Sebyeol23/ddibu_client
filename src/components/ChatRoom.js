@@ -4,13 +4,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 function ChatRoom({socket}){
+    const apiUrl = process.env.REACT_APP_API_URL;
     const navigate = useNavigate();
     const [chatRooms, setChatRooms] = useState([]);
 
     useEffect(() => {
         async function getChatRoom(){
             try {
-                const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/chat/chat-room', {
+                const res = await axios.get(`${apiUrl}/api/chat/chat-room`, {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }
@@ -29,7 +30,7 @@ function ChatRoom({socket}){
         return ()=>{
             socket.off('newChatRoom');
         }
-    }, [socket]);
+    }, [socket, apiUrl]);
 
     return (
         <div className={styles.chatRoomBox}>

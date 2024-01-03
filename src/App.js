@@ -15,11 +15,13 @@ import axios from 'axios';
 
 function App() {
   const [socket, setSocket] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
+  console.log(apiUrl);
 
   useEffect(() => {
-    const newSocket = io('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com', {
+    const newSocket = io(`${apiUrl}`, {
       cors: {
-        origin: ['http://localhost:80', 'http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com'],
+        origin: ['http://localhost:80', `${apiUrl}`],
       },
     });
 
@@ -27,7 +29,7 @@ function App() {
 
     async function storeSocket(socketId){
       try{
-        await axios.post('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/socket/socket', {
+        await axios.post(`${apiUrl}/api/socket/socket`, {
           socketId: socketId
         },
         {
@@ -48,7 +50,7 @@ function App() {
     return () => {
       newSocket.disconnect();
     };
-  }, []);
+  }, [apiUrl]);
 
   return (
     <BrowserRouter>

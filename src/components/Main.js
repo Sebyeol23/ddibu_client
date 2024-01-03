@@ -5,12 +5,13 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
 function Main(){
+  const apiUrl = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
   async function fetchMoreData(){
-    const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
+    const res = await axios.get(`${apiUrl}/api/home/product`, {
       params:{
         limit: 15,
         lastId: items[items.length-1].productId
@@ -23,7 +24,7 @@ function Main(){
   useEffect(() => {
     async function fetchData(){
       try {
-        const res = await axios.get('http://ec2-15-164-97-56.ap-northeast-2.compute.amazonaws.com/api/home/product', {
+        const res = await axios.get(`${apiUrl}/api/home/product`, {
           params:{
             limit: 15
           }
@@ -35,7 +36,7 @@ function Main(){
       }
     };
     fetchData();
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className={styles.mainDiv}>
