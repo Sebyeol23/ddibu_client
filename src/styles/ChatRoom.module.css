@@ -10,7 +10,7 @@
     width: 60%;
     background-color: black;
     display: flex;
-    flex-direction: column; /* 세로로 나열되도록 추가 */
+    flex-direction: column;
     gap: 2%;
     padding: 1%;
     max-height: 100vh;
@@ -29,5 +29,3 @@
 .chatRoom:hover {
     background-color: #e0e0e0;
 }
-
-/* You can add more styling as needed */
