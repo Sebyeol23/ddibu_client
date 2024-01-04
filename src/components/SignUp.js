@@ -29,9 +29,9 @@ function SignUp(){
             <div className={styles.box}>
                 <div className={styles.head}>회원가입</div>
                 <div className={styles.body}>
-                    <input type='text' ref={id}></input>
-                    <input type='text' ref={pw}></input>
-                    <button onClick={PostSignUp}>회원가입</button>
+                    <input className={styles.input} type='text' ref={id}></input>
+                    <input className={styles.input} type='text' ref={pw}></input>
+                    <button className={styles.button} onClick={PostSignUp}>회원가입</button>
                 </div>
             </div>
         </div>

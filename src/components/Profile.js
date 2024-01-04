@@ -50,9 +50,9 @@ function Profile(){
             <div className={styles.box}>
                 <div className={styles.head}>프로필</div>
                 <div className={styles.body}>
-                    <input type='text' ref={name} defaultValue={originalName}></input>
-                    <input type='text' ref={location} defaultValue={originalLocation}></input>
-                    <button onClick={UpdateProfile}>수정</button>
+                    <input className={styles.input} type='text' ref={name} defaultValue={originalName}></input>
+                    <input className={styles.input} type='text' ref={location} defaultValue={originalLocation}></input>
+                    <button className={styles.button} onClick={UpdateProfile}>수정</button>
                 </div>
             </div>
         </div>
