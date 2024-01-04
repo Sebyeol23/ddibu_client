@@ -105,3 +105,10 @@
 
   - 유저의 이름과 위치 정보 수정 가능
   - 유저 이름 기본값은 게스트
+
+## DB
+
+<br />
+
+- ### DB
+  <img src = "https://github.com/Sebyeol23/ddibu/assets/98662998/4ac77447-e293-4e7f-bf74-514352eb9960" width = "600" height = "400">
