@@ -1,4 +1,4 @@
-.page {
+/* .page {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,4 +29,71 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
+
+.page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #f1f1f1; /* 변경 가능한 배경 색상 */
+  }
+  
+  .box {
+    background-color: #ffffff; /* 변경 가능한 배경 색상 */
+    width: 20%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    border-radius: 8px; /* 변경 가능한 모서리의 굴곡 정도 */
+  }
+  
+  .head {
+    background-color: #3498db; /* 변경 가능한 배경 색상 */
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; /* 변경 가능한 텍스트 색상 */
+    font-size: 1.5rem; /* 변경 가능한 폰트 크기 */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .body {
+    background-color: #ecf0f1; /* 변경 가능한 배경 색상 */
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* 변경 가능한 여백 */
+  }
+  
+  .input {
+    width: 80%; /* 변경 가능한 너비 */
+    padding: 10px; /* 변경 가능한 여백 */
+    margin: 10px 0; /* 변경 가능한 여백 */
+    border: 1px solid #bdc3c7; /* 변경 가능한 테두리 스타일 */
+    border-radius: 4px; /* 변경 가능한 모서리의 굴곡 정도 */
+    outline: none; /* 포커스 시 테두리 제거 */
+  }
+  
+  .button {
+    width: 80%; /* 변경 가능한 너비 */
+    padding: 10px; /* 변경 가능한 여백 */
+    margin-top: 10px; /* 변경 가능한 여백 */
+    background-color: #3498db; /* 변경 가능한 배경 색상 */
+    color: #ffffff; /* 변경 가능한 텍스트 색상 */
+    border: none;
+    border-radius: 4px; /* 변경 가능한 모서리의 굴곡 정도 */
+    cursor: pointer;
+    outline: none; /* 포커스 시 테두리 제거 */
+  }
+  
+  .button:hover {
+    background-color: #2980b9; /* 변경 가능한 호버 시 배경 색상 */
+  }
+  

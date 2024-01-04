@@ -1,14 +1,64 @@
-.image {
-    background-color: bisque;
-    width: 20vw;
-    height: 20vh;
-    justify-content: center;
+.container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    padding: 20px;
 }
 
-.like {
+.imageContainer {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.productDetails {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.body {
+    margin-bottom: 10px;
+}
+
+.price, .date, .seller, .status, .tag {
+    margin-bottom: 8px;
+}
+
+.buttonContainer {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.likeButton, .chatButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.likeButton {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.chatButton {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.loading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
 }

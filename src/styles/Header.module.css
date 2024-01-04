@@ -1,4 +1,4 @@
-.headerDiv {
+/* .headerDiv {
     background-color : pink;
     height: 100%;
     display: flex;
@@ -49,4 +49,84 @@
 
 .signOut:hover {
     color: blue;
+} */
+
+.headerDiv {
+  background-color: #3498db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1vh 2vw;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  background-color: #2980b9; /* 변경 가능한 배경 색상 */
+  color: white;
+  padding: 10px; /* 변경 가능한 여백 */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort,
+.categorize {
+  background-color: #2c3e50; /* 변경 가능한 배경 색상 */
+  color: white;
+  padding: 10px; /* 변경 가능한 여백 */
+  margin-left: 10px; /* 변경 가능한 여백 */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.air {
+  flex: 1;
+}
+
+.loginBox {
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+    color: white;
+}
+
+.signOut {
+  color: grey;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.signOut:hover {
+  color: white;
+}
+
+.signUp {
+    color: grey;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.signUp:hover {
+    color: white;
+}
+
+.signIn {
+    color: grey;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.signIn:hover {
+    color: white;
 }

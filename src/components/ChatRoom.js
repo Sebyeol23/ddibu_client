@@ -21,7 +21,9 @@ function ChatRoom({socket}){
                 console.log(error);
             }
         };
+
         getChatRoom();
+
         if(!socket) return;
         socket.on('newChatRoom', ()=>{
             getChatRoom();
@@ -33,12 +35,22 @@ function ChatRoom({socket}){
     }, [socket, apiUrl]);
 
     return (
-        <div className={styles.chatRoomBox}>
-            {chatRooms.length ? 
-            chatRooms.map((chatRoom, index) => (
-                <div className={styles.chatRoom} key={chatRoom.roomId} onClick={()=>{navigate('../chat', {state: {roomId: chatRoom.roomId, partnerId: chatRoom.partnerId}});}}>{`${chatRoom.roomId} -> ${chatRoom.partnerId}`}</div>
-            ))
-            :null}
+        <div className={styles.window}>
+            <div className={styles.chatRoomBox}>
+                {chatRooms.length ? 
+                    chatRooms.map((chatRoom, index) => (
+                        <div
+                            className={styles.chatRoom}
+                            key={chatRoom.roomId}
+                            onClick={() => {
+                                navigate('../chat', { state: { roomId: chatRoom.roomId, partnerId: chatRoom.partnerId } });
+                            }}
+                        >
+                            {`[${chatRoom.roomId}] ${chatRoom.partnerId}`}
+                        </div>
+                    ))
+                : null}
+            </div>
         </div>
     );
 }

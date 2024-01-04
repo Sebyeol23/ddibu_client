@@ -6,10 +6,11 @@
 
 .header {
     flex: 1;
-    background-color: #0d47a1;
+    background-color: #2196f3;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: bold;
 }
 
 .window {

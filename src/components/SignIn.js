@@ -29,9 +29,9 @@ function SignIn(){
             <div className={styles.box}>
                 <div className={styles.head}>로그인</div>
                 <div className={styles.body}>
-                    <input type='text' ref={id}></input>
-                    <input type='text' ref={pw}></input>
-                    <button onClick={PostSignIn}>로그인</button>
+                    <input className={styles.input} type='text' ref={id}></input>
+                    <input className={styles.input} type='text' ref={pw}></input>
+                    <button className={styles.button} onClick={PostSignIn}>로그인</button>
                 </div>
             </div>
         </div>

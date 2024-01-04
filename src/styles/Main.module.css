@@ -1,53 +1,65 @@
 .mainDiv {
-    background-color : orange;
-    height: 100%;
+    background-color: #f8f8f8;
 }
 
 .scroll {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2vh;
+    padding: 2vh;
 }
 
 .item {
-    height: 35vh;
-    border: solid;
-    border-color: black;
+    height: 36vh;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.item:hover {
+    transform: scale(1.05);
 }
 
 .image {
-    background-color: bisque;
-    flex: 28;
-    width: 90%;
+    background-color: #f0f0f0;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex: 29;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    background-size: cover;
 }
 
 .data {
-    background-color: aquamarine;
     flex: 7;
-    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.load {
-    grid-column: span 5;
-    background-color: antiquewhite;
-    text-align: center;
+.name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
+.price {
+    font-size: 14px;
+    color: #333;
+}
+
+.load,
 .end {
-    grid-column: span 5;
-    background-color: aquamarine;
-    text-align: center;
+    grid-column: span 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
