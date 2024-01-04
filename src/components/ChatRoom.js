@@ -26,6 +26,7 @@ function ChatRoom({socket}){
 
         if(!socket) return;
         socket.on('newChatRoom', ()=>{
+            console.log("newChat")
             getChatRoom();
         });
 
